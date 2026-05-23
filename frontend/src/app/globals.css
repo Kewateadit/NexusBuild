@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-accent: #6366f1;
+  --color-accent-glow: rgba(99, 102, 241, 0.5);
+}
+
+@layer base {
+  :root {
+    --background: #f6f7fb;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #6366f1;
+    --radius: 1.5rem;
+  }
+
+  .dark {
+    --background: #0b1020;
+    --foreground: #f1f5f9;
+    --card: #121826;
+    --card-foreground: #f1f5f9;
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(255, 255, 255, 0.08);
+    --ring: #818cf8;
+  }
+
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-[#121826]/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-xl shadow-black/[0.02] dark:shadow-none;
+  }
+  
+  .btn-primary {
+    @apply px-8 h-14 bg-indigo-600 text-white font-bold rounded-2xl shadow-lg 
+           hover:bg-indigo-700 hover:scale-[1.02] active:scale-[0.98] transition-all 
+           flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-8 h-14 bg-white dark:bg-white/5 text-gray-900 dark:text-white font-bold 
+           rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm 
+           hover:bg-gray-50 dark:hover:bg-white/10 transition-all flex items-center justify-center gap-3;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
